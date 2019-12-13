@@ -10,6 +10,7 @@ public class App {
 
         while(!stack.isEmpty()){
             System.out.println((char) stack.pop());
+            //use System.out.print to get the word reversed
         }
 
     }
