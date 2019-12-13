@@ -1,0 +1,16 @@
+public static int recursiveBinary(int[] arr, int p, int r, int x){
+        Arrays.sort(arr);
+        System.out.println("[" + p + "....." + r + "]");
+        if( p > r){
+            return -1;
+        } else {
+            int q = (p+r)/2;
+            if(arr[q] == x){
+                return q;
+            } else if (arr[q] > x){
+                return recursiveBinary(arr, p, q-1, x);
+            } else {
+                return recursiveBinary(arr, q+1, r, x);
+            }
+        }
+    }
