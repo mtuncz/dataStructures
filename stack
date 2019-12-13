@@ -1,41 +1,58 @@
 public class Stack {
-	private int maxSize; 
-	private long[] stackArray; 
-	private int top; 
-	
-	
-	public Stack (int size) {
-		this.maxSize = size; 
-		this.stackArray = new long[maxSize]; 
-		this.top = -1; 
-	}
-	
-	
-	public void push(long j) {
-		top++; 
-		stackArray[top] = j;
-	}
-	
-	
-	public long pop(){
-		int oldTop = top; 
-		top--; 
-		return stackArray[oldTop]; 
-	}
-	
-	//return the current item on top of the stack 
-	public void peak(){
-		return stackArray[top]; 
-	}
-	
-	
-	public boolean isEmpty(){
-		return (top == -1); 
-	}
-	
-	//maxSize-1 is the last index position 
-	public boolean isFull(){
-		return (maxSize-1 == top); 
-	} 	
-	
+
+    private int maxSize;
+    private long[] stackArray;
+    private int top;
+
+    public Stack(int size){
+        this.maxSize = size;
+        this.stackArray = new long[maxSize];
+        this.top = -1;
+        //we do start the top at -1, and once we add the first item
+        // the first item's index will be 0 as it shoulld be
+    }
+
+    //to add we use push
+    public void push(long i){
+        if(isFull()){
+            System.out.println("This stack is already full");
+        } else {
+            top++;
+            stackArray[top] = i;
+        }
+    }
+
+    //pop to remove or show items
+    public long pop(){
+        if(isEmpty()){
+            System.out.println("the stack is empty");
+            return -1;
+        } else {
+            int oldTop = top;
+            top--;
+            return stackArray[oldTop];
+        }
+    }
+
+    //peak to check the item on top of the stack currently
+    public long peak(){
+        return stackArray[top];
+    }
+
+
+    //is empty to check if the stack is empty
+    public boolean isEmpty(){
+        return (top == -1);
+    }
+
+    //to check if the stack is full
+    public boolean isFull(){
+        return (maxSize-1 == top);
+    }
+
+    public int getSize(){
+        return maxSize;
+    }
+
+
 }
