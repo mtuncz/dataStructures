@@ -1,0 +1,20 @@
+// stack structure is designed for long
+
+public static String reverseString(String str){
+        String result = "";
+
+        Stack stack = new Stack(str.length());
+        char[] strArr = str.toCharArray();
+
+        while(! stack.isFull()){
+            for(int i = 0; i < strArr.length; i++){
+                stack.push(strArr[i]);
+            }
+        }
+
+        while(!stack.isEmpty()){
+            result += (char) stack.pop();
+        }
+
+        return result;
+    }
