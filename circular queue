@@ -1,0 +1,64 @@
+public class Queue {
+    private int maxSize;
+    private int[] queArr;
+    private int front;
+    private int rear;
+    private int nItems;
+
+    public Queue(int size){
+       this.maxSize = size;
+       this.queArr = new int[maxSize];
+       this.front = 0;
+       this.rear = -1;
+       this.nItems = 0;
+    }
+
+    public void insert(int j) {
+        if(rear == maxSize-1){
+            rear = -1; // to overrite the array
+            // this makes the structure a circular queue
+        }
+        rear++;
+        nItems++;
+        queArr[rear] = j;
+
+    }
+
+
+    public int remove(){
+        int temp = queArr[front];
+        front++;
+        if(front == maxSize){
+            front = 0; // set the front back to the 0th index
+            // so that we can utilize the entire again
+        }
+        nItems--;
+        return temp;
+    }
+
+    public int peakFront(){
+        return queArr[front];
+    }
+
+    public boolean isEmpty(){
+        return (nItems == 0);
+    }
+
+    public boolean isFull(){
+        //return (rear == maxSize-1);
+        return (nItems == maxSize);
+    }
+
+
+
+
+
+    public void view(){
+        System.out.print("[ ");
+        for(int i = 0 ; i < maxSize; i++){
+            System.out.print(queArr[i] + " ");
+        }
+        System.out.println("]");
+    }
+}
+
