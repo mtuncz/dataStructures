@@ -15,7 +15,7 @@ public class Queue {
 
     public void insert(int j) {
         if(rear == maxSize-1){
-            rear = -1; // to overrite the array
+            rear = -1; // to overwrite the array
             // this makes the structure a circular queue
         }
         rear++;
