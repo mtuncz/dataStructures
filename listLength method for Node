@@ -1,0 +1,12 @@
+public static int listLength(Node aNode){
+        int length = 1;
+        Node curr = aNode;
+        while(curr.next != null){
+            length++;
+            curr = curr.next;
+        }
+
+        return length;
+    }
+    
+    
