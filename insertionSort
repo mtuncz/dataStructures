@@ -1,0 +1,12 @@
+public static int[] insertionSort(int[] arr){
+        for(int i = 1; i < arr.length; i++) {
+            int element = arr[i]; // element variable contains the data we intend on bringing over to the sorted section
+            int j = i-1; // j variable points to the index position of the last position in the sorted area
+            while(j >= 0 && arr[j] > element ){
+                arr[j+1] = arr[j];
+                j--;
+            }
+            arr[j+1] = element;
+        }
+        return arr;
+    }
