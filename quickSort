@@ -1,0 +1,37 @@
+public class App {
+    public static void main(String[] args) {
+        int[] arr = { 1,5,2,9,56,0,7,67,10};
+        QuickSort(arr, 0, arr.length-1);
+        System.out.println(Arrays.toString(arr));
+
+    }
+
+    public static void QuickSort(int[] arr, int start, int end){
+        if(start < end){
+            int q = partition(arr, start, end);
+            QuickSort(arr, start, q-1); // sorts the left half
+            QuickSort(arr, q+1, end); // sorts the right half
+        }
+    }
+
+    public static int partition(int[] arr, int start, int end){
+        int pivot = arr[end];
+        int i = start-1;
+        for(int j = start; j < end; j++){
+            if(arr[j] <= pivot){
+                i++;
+                int ival = arr[i];
+                int jval = arr[j];
+                arr[i] = jval;
+                arr[j] = ival;
+
+            }
+        }
+        //put the pivot in the correct slot
+        int ival = arr[i+1];
+        arr[end] = ival;
+        arr[i+1] = pivot;
+
+        return i+1;
+    }
+}
