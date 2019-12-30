@@ -1,0 +1,152 @@
+
+public class Node<T extends Comparable<T>>{
+    private T data;
+    private Node<T> nextNode;
+
+    public Node(T data){
+        this.data = data;
+    }
+
+    public T getData(){
+        return this.data;
+    }
+
+    public void setData(T data){
+        this.data = data;
+    }
+
+    public Node<T> getNextNode(){
+        return this.nextNode;
+    }
+
+    public void setNextNode(Node<T> nextNode){
+        this.nextNode = nextNode;
+    }
+
+    @Override
+    public String toString() {
+        return this.data.toString();
+    }
+}
+
+
+public interface List<T extends Comparable<T>> {
+    public Node<T> getMiddleNode();
+    public void insert(T data);
+    public void remove(T data);
+    public void traverseList();
+    public int size();
+}
+
+
+
+
+public class LinkedList<T extends Comparable<T>> implements List<T> {
+
+    private Node<T> root;
+    private int sizeOfList;
+
+
+    @Override
+    public Node<T> getMiddleNode() {
+        Node<T> fastPointer = root;
+        Node<T> slowPointer = root;
+
+        while(fastPointer.getNextNode()!=null && fastPointer.getNextNode().getNextNode()!=null){
+            fastPointer = fastPointer.getNextNode().getNextNode();
+            slowPointer = slowPointer.getNextNode();
+        }
+        return slowPointer;
+    }
+
+    @Override
+    public void insert(T data) {
+        ++this.sizeOfList;
+        if(root == null){ // this means this is the first item
+            this.root = new Node<>(data);
+        } else {
+            //we can insert at the beginning or at the end
+            //becuase this is linked list, our main target to insert at beg
+            insertDataBeginning(data);
+        }
+    }
+
+
+
+    //O(1)
+    private void insertDataBeginning(T data) {
+        Node<T> newNode = new Node<>(data);
+        newNode.setNextNode(root);
+        this.root = newNode;
+    }
+
+
+
+    //O(N)
+    public void insertDataAtEnd(T data, Node<T> node){
+        //this means we are not at the end of the linkedlist
+        if(node.getNextNode() != null){
+            insertDataAtEnd(data, node.getNextNode());
+        } else {
+            Node<T> newNode = new Node<>(data);
+            node.setNextNode(newNode);
+        }
+    }
+
+
+    @Override
+    public void remove(T data) {
+
+        if(this.root == null){
+            return;
+            //list is empty
+        }
+
+        --this.sizeOfList;
+
+        if(this.root.getData().compareTo(data) == 0){
+            // this means we are removing the root node
+            this.root = this.root.getNextNode();
+        } else {
+            remove(data, root, root.getNextNode());
+        }
+
+    }
+
+    private void remove(T dataToRemove, Node<T> previousNode, Node<T> actualNode) {
+
+        while(actualNode != null){
+            if(actualNode.getData().compareTo(dataToRemove) == 0){
+                previousNode.setNextNode(actualNode.getNextNode());
+                actualNode = null;
+                return;
+            }
+
+            previousNode = actualNode;
+            actualNode = actualNode.getNextNode();
+        }
+    }
+
+    @Override
+    public void traverseList() {
+
+        if(this.root == null){
+            return;
+            //this means the list is empty
+        }
+
+        Node<T> actualNode = this.root;
+
+        while(actualNode != null){
+            System.out.print(actualNode + " -> ");
+            actualNode = actualNode.getNextNode();
+        }
+    }
+
+
+
+    @Override
+    public int size() {
+        return this.sizeOfList;
+    }
+}
