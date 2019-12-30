@@ -1,0 +1,10 @@
+public Node<T> getMiddleNode() {
+        Node<T> fastPointer = root;
+        Node<T> slowPointer = root;
+
+        while(fastPointer.getNextNode()!=null && fastPointer.getNextNode().getNextNode()!=null){
+            fastPointer = fastPointer.getNextNode().getNextNode();
+            slowPointer = slowPointer.getNextNode();
+        }
+        return slowPointer;
+    }
