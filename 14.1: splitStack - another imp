@@ -1,0 +1,30 @@
+public static void splitStack(Stack<Integer> s){
+       
+    Queue<Integer> q = new LinkedList<Integer>(); 
+    int negatives = 0; 
+    while(!s.isEmpty()){
+        q.add(s.pop());
+    } 
+    
+    int i = 0; 
+    while(i<2){
+        if(i == 0){
+            for(int k : q){
+                if(k < 0){
+                    s.push(k);
+                }
+            }
+        }
+        
+        if(i == 1){
+            for(int k : q){
+                if(k>=0){
+                    s.push(k);
+                }
+            }
+        }
+        i++;
+    }
+        
+   
+}
